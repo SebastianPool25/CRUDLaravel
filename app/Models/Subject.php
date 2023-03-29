@@ -16,4 +16,8 @@ class Subject extends Model
         return $this->hasMany(Topic::class);
     }
 
+    public function bugs(): HasMany
+    {
+        return $this->hasMany(Bug::class);
+    }
 }
