@@ -19,6 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'matricula'=>fake()->bothify('########'), //??? para letras random ### para numeros random
             'ing'=>fake()->randomElement(['isc','ier','iem','ii','ie']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
