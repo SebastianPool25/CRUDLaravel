@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\CornellnoteController;
+use App\Http\Controllers\BugController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,8 @@ Route::resource('/gestion/usuario', UserRegisterController::class);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/asignatura', [SubjectController::class, 'index'])->middleware(['auth', 'verified'])->name('asignatura');
-
+Route::resource('cornellnote', CornellnoteController::class)->middleware(['auth', 'verified']);
+Route::resource('bug', BugController::class)->middleware(['auth', 'verified']);
 
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/(id)', [UserController::class, 'index']);

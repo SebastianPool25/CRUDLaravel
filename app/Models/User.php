@@ -63,7 +63,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cornellnote::class);
     }
-    }
 
     //Relacion de muchos a muchos con la tabla subjects
     public function subjects()

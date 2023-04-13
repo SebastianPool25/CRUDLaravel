@@ -18,6 +18,12 @@
                     <x-nav-link :href="route('asignatura')" :active="request()->routeIs('asignatura')">
                         {{ __('Asignaturas') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('cornellnotes.index')" :active="request()->routeIs('cornellnotes.index')">
+                        {{ __('Notas') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('bugs.index')" :active="request()->routeIs('bugs.index')">
+                        {{ __('Bugs') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +81,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('asignatura')" :active="request()->routeIs('asignatura')">
                 {{ __('Asignatura') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cornellnotes.index')" :active="request()->routeIs('cornellnotes.index')">
+                {{ __('Notas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('bug.index')" :active="request()->routeIs('bug')">
+                {{ __('Bugs') }}
             </x-responsive-nav-link>
         </div>
 
