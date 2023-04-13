@@ -36,20 +36,20 @@
     <div>
             <h2 class="text-2xl font-bold mb-4">Palabras clave</h2>
             <ul class="list-disc list-inside">
-                <li>{{ $detalle_nota->PalabrasClave }}</li>
+                <li>{{ $detalle_nota->keywords }}</li>
             </ul>
         </div>
     
     <div>
             <h2 class="text-2xl font-bold mb-4">Apuntes</h2>
             <p class="text-lg">
-            {{ $detalle_nota->Texto }}
+            {{ $detalle_nota->apuntes }}
             </p>
         </div>
         <div class="col-span-2">
             <h2 class="text-2xl font-bold mt-6 mb-4">Conclusión</h2>
             <p class="text-lg">
-            {{ $detalle_nota->Conclusion }}
+            {{ $detalle_nota->conclusion }}
             </p>
                 </div>
                 </div>

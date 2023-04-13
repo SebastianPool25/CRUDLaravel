@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('cornellnotes', function (Blueprint $table) {
             $table->id();
             $table->string('titulo', 200);
-            $table->string('PalabrasClave', 500);
-            $table->longText('Texto');
-            $table->longText('Conclusion');
+            $table->string('keywords', 500);
+            $table->longText('apuntes');
+            $table->longText('conclusion');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
