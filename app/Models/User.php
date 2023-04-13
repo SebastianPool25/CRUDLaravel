@@ -58,5 +58,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bug::class);
     }
+    //Relacion con la tabla Cornellnotes
+    public function cornellnotes(): HasMany
+    {
+        return $this->hasMany(Cornellnote::class);
+    }
+    }
+
+    //Relacion de muchos a muchos con la tabla subjects
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class)->using(Relation::class);
+    }
 
 }

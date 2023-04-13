@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Subject;
 
 
-class BugSeederFactory extends Factory
+class BugFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,17 +16,17 @@ class BugSeederFactory extends Factory
     public function definition(): array
     {
 
-        $subject= Subject::all()->random();
+        $subject= Subject::all();
     
         return [
             //
 
-                'descripcion' => fake()->paragraph(3),
+                'description' => fake()->paragraph(3),
                 'codigo' => fake()->optional()->randomElement(['error 404', 'error de sintaxis','error 500','SQL']),
-                'solucion' => fake()->paragraph(3),
+                'solution' => fake()->paragraph(3),
                 'estado' => fake()->numberBetween(1,5),
                 'plataforma' => fake()->randomElement(['vuejs','laravel','php','tailwindcss','codeigniter']),
-                'subject_id' => $subject,
+                'subject_id'=>$subject->random()
 
         ];
     }

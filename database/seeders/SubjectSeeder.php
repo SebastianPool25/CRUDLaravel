@@ -18,6 +18,7 @@ class SubjectSeeder extends Seeder
         Subject::factory()
         ->count(150)
         ->hasTopics(5)
+        ->hasBugs(5)
         ->create();
     }
 }
