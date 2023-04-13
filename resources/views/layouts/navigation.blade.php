@@ -85,7 +85,7 @@
             <x-responsive-nav-link :href="route('cornellnotes.index')" :active="request()->routeIs('cornellnotes.index')">
                 {{ __('Notas') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('bug.index')" :active="request()->routeIs('bug')">
+            <x-responsive-nav-link :href="route('bugs.index')" :active="request()->routeIs('bugs.index')">
                 {{ __('Bugs') }}
             </x-responsive-nav-link>
         </div>

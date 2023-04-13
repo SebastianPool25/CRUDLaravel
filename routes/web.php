@@ -39,8 +39,9 @@ Route::resource('/gestion/usuario', UserRegisterController::class);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/asignatura', [SubjectController::class, 'index'])->middleware(['auth', 'verified'])->name('asignatura');
-Route::resource('cornellnote', CornellnoteController::class)->middleware(['auth', 'verified']);
-Route::resource('bug', BugController::class)->middleware(['auth', 'verified']);
+
+Route::resource('cornellnotes', CornellnoteController::class)->middleware(['auth', 'verified']);
+Route::resource('bugs', BugController::class)->middleware(['auth', 'verified']);
 
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/(id)', [UserController::class, 'index']);
