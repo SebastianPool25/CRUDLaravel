@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Bug;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class BugController extends Controller
      */
     public function index()
     {
-        return view('bugs.index');
+        $bugs=Bug::where('user_id',auth()->user()->id)->get();
+        return view('bugs.index', compact('bugs'));
     }
 
     /**
@@ -34,9 +36,10 @@ class BugController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bug $bug)
+    public function show($id)
     {
-        //
+        $detalle_bug=Bug::find($id);  
+        return view('bugs.show', compact('detalle_bug'));
     }
 
     /**
@@ -58,8 +61,10 @@ class BugController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bug $bug)
+    public function destroy($id)
     {
-        //
+        $bug=Bug::find($id);
+        $bug->delete();
+        return redirect()->route('bugs.index');
     }
 }

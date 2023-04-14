@@ -58,7 +58,7 @@
                 <form class="inline-block" action="{{ route('cornellnotes.destroy', $detalle_nota->id) }}" method="POST">
                                 @method("DELETE")
                                 @csrf
-                    <button type="sumbiit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    <button type="sumbiit" class="bg-red-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="w-6 h-6 inline-block align-middle mr-2">
                             <path
