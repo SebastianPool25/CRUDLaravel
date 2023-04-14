@@ -4,10 +4,17 @@
             {{ __('Notas') }}
         </h2>
         <div class="container mx-auto mt-10">
-        <a href="{{ route('cornellnotes.create') }}" class="bg-red-500 text-white font-bold py-3 px-6 rounded  items-center inline-block">
-            Crear Nota
-        </a>
-    </div>
+            <a href="{{ route('cornellnotes.create') }}"
+                class="bg-red-500 text-white font-bold py-3 px-6 rounded inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+
+                Crear Nota
+
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -21,30 +28,47 @@
                             <tr>
                                 <th class="py-2 px-4 border border-red-400">Titulo</th>
                                 <th class="py-2 px-4 border border-red-400">Conclusión</th>
-                                <th class="py-2 px-4 border border-red-400">Ver</th>
+                                <th class="py-2 px-4 border border-red-400">Entrar a la nota</th>
+                                <th class="py-2 px-4 border border-red-400">Editar</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody class="divide-y divide-gray-700">
-                    @foreach($Notitas as $nota)
-                    <tr>
-                        <td class="py-2 px-4 border border-red-400"> {{ $nota->titulo }} </td>
-                        <td class="py-2 px-4 border border-red-400"> {{ $nota->Conclusion }} </td>
-                        <td class="px-6 py-4 border border-red-400">
-                            <center>
-                                <a href="{{ route('cornellnotes.show', $nota->id) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </a>
-                            </center>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                        
-                     
+                            @foreach($Notitas as $nota)
+                            <tr>
+                                <td class="py-2 px-4 border border-red-400"> {{ $nota->titulo }} </td>
+                                <td class="py-2 px-4 border border-red-400"> {{ $nota->Conclusion }} </td>
+                                <td class="px-6 py-4 border border-red-400">
+                                    <center>
+                                        <a href="{{ route('cornellnotes.show', $nota->id) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                                            </svg>
+
+                                        </a>
+                                    </center>
+                                </td>
+                                <td class="px-6 py-4 border border-red-400">
+                                    <center>
+                                        <a href="{{ route('cornellnotes.edit', $nota->id) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                            </svg>
+
+                                        </a>
+                                    </center>
+
+
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+
+
                     </table>
                 </div>
             </div>

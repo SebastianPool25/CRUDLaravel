@@ -43,8 +43,8 @@ class CornellnoteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'titulo' => 'required',
-            'palabrasClave' => 'required',
-            'texto' => 'required',
+            'keywords' => 'required',
+            'apuntes' => 'required',
             'conclusion' => 'required',
             'tema' => 'required'
         ]);
@@ -57,9 +57,9 @@ class CornellnoteController extends Controller
         //inserción
         $nota = new Cornellnote();
         $nota->titulo = $request->titulo;
-        $nota->PalabrasClave = $request->palabrasClave;
-        $nota->Texto = $request->texto;
-        $nota->Conclusion = $request->conclusion;
+        $nota->keywords = $request->keywords;
+        $nota->apuntes = $request->apuntes;
+        $nota->conclusion = $request->conclusion;
         $nota->user_id = auth()->user()->id;
         $nota->topic_id = $request->tema;
         $nota->save();
@@ -84,24 +84,56 @@ class CornellnoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cornellnote $cornellnote)
+    public function edit($id)
     {
-        //
+        $detalle_nota=Cornellnote::find($id);
+        
+        $notas = DB::table('cornellnotes')
+            ->join('topics','cornellnotes.topic_id','=','topics.id')
+            ->select('topics.tema','topics.unidad','cornellnotes.titulo','cornellnotes.keywords','cornellnotes.apuntes','cornellnotes.conclusion')
+            ->where('cornellnotes.id', $detalle_nota->id)
+            ->get();
+        //dd($notas);
+        return view('cornellnotes.edit', compact('detalle_nota','notas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cornellnote $cornellnote)
+    public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'palabrasClave' => 'required',
+            'conclusion' => 'required',
+
+        ]);
+        //validación
+        if ($validator->fails()) {
+            return redirect("cornellnotes/$id/edit")
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        //inserción
+        $detalle_nota=Cornellnote::find($id);
+        $nota = Cornellnote::find($id);
+        $nota->titulo = $detalle_nota->titulo;
+        $nota->keywords = $request->keywords;
+        $nota->apuntes = $detalle_nota->apuntes;
+        $nota->conclusion = $request->conclusion;
+        $nota->user_id = auth()->user()->id;
+        $nota->topic_id = $detalle_nota->topic_id;
+        $nota->save();
+
+        return redirect()->route('cornellnotes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cornellnote $cornellnote)
+    public function destroy($id)
     {
-        //
+        $nota=Cornellnote::find($id);
+        $nota->delete();
+        return redirect()->route('cornellnotes.index');
     }
 }

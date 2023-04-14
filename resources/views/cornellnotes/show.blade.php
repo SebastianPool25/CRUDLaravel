@@ -11,51 +11,63 @@
                 <div class="p-6 text-gray-900">
                     <!-- Esta recibiendo el compact asignatura y lo esta renombrando como asignaturas, entonces el
                     cilo sera a lo que se esta recibiendo, en este caso asignatura y lo esta renombrando como Asignaturas -->
-
-                    <body class="bg-blue-500">
-
                     <div class="container mx-auto px-4">
 
-<!-- Encabezado -->
-<header class="mt-6 mb-10">
-    <h1 class="text-4xl font-bold text-center">Titulo: {{ $detalle_nota->titulo }}</h1>
-    <div>
-    @foreach ($notas as $nota)
-        <p class="text-lg">Semestre: {{ $nota->unidad }}</p>
-        <p class="text-lg">Tema: {{ $nota->tema }}</p>
-    @endforeach
-        <p class="text-lg">Fecha: {{$detalle_nota->created_at->formatLocalized('%A %d %B %Y')}} </p>
-    </div>
-</header>
+                        <!-- Encabezado -->
+                        <header class="mt-6 mb-10">
+                            <h1 class="text-4xl font-bold text-center">Titulo: {{ $detalle_nota->titulo }}</h1>
+                            <div>
+                                @foreach ($notas as $nota)
+                                <p class="text-lg">Semestre: {{ $nota->unidad }}</p>
+                                <p class="text-lg">Tema: {{ $nota->tema }}</p>
+                                @endforeach
+                                <p class="text-lg">Fecha:
+                                    {{$detalle_nota->created_at->formatLocalized('%A %d %B %Y')}} </p>
+                            </div>
+                        </header>
 
-<!-- Contenido -->
-<main>
+                        <!-- Contenido -->
+                        <main>
 
-    <!-- Apuntes, Palabras clave y Conclusión -->
-    <div class="bg-white p-6 rounded-md shadow-md grid grid-cols-2 gap-2">
-    <div>
-            <h2 class="text-2xl font-bold mb-4">Palabras clave</h2>
-            <ul class="list-disc list-inside">
-                <li>{{ $detalle_nota->keywords }}</li>
-            </ul>
-        </div>
-    
-    <div>
-            <h2 class="text-2xl font-bold mb-4">Apuntes</h2>
-            <p class="text-lg">
-            {{ $detalle_nota->apuntes }}
-            </p>
-        </div>
-        <div class="col-span-2">
-            <h2 class="text-2xl font-bold mt-6 mb-4">Conclusión</h2>
-            <p class="text-lg">
-            {{ $detalle_nota->conclusion }}
-            </p>
+                            <!-- Apuntes, Palabras clave y Conclusión -->
+                            <div class="bg-white p-6 rounded-md shadow-md grid grid-cols-2 gap-2">
+                                <div>
+                                    <h2 class="text-2xl font-bold mb-4">Palabras clave</h2>
+                                    <ul class="list-disc list-inside">
+                                        <li>{{ $detalle_nota->keywords }}</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h2 class="text-2xl font-bold mb-4">Apuntes</h2>
+                                    <p class="text-lg">
+                                        {{ $detalle_nota->apuntes }}
+                                    </p>
+                                </div>
+                                <div class="col-span-2">
+                                    <h2 class="text-2xl font-bold mt-6 mb-4">Conclusión</h2>
+                                    <p class="text-lg">
+                                        {{ $detalle_nota->conclusion }}
+                                    </p>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
                 </div>
-                </div>
-                </main>
-
-</div>
+                <div class="px-6 py-6">
+                <form class="inline-block" action="{{ route('cornellnotes.destroy', $detalle_nota->id) }}" method="POST">
+                                @method("DELETE")
+                                @csrf
+                    <button type="sumbiit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="w-6 h-6 inline-block align-middle mr-2">
+                            <path
+                                d="M3 5c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v2H3V5zm18 3v13c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V8h18z" />
+                            <path d="M9 10v7m6-7v7" />
+                        </svg>
+                        Eliminar
+                    </button>
+                </form>
                 </div>
             </div>
         </div>
