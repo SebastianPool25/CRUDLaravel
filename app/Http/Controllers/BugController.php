@@ -34,9 +34,9 @@ class BugController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'descripcion' => 'required',
+            'description' => 'required',
             'codigo' => 'required',
-            'solucion' => 'required',
+            'solution' => 'required',
             'plataforma'=>'required',
             'estado' => 'required',
             'asignatura'=>'required'
@@ -49,9 +49,9 @@ class BugController extends Controller
         }
 
         $bug=new Bug();
-        $bug->descripcion=$request->descripcion;
+        $bug->description=$request->description;
         $bug->codigo=$request->codigo;
-        $bug->solucion=$request->solucion;
+        $bug->solution=$request->solution;
         $bug->estado=$request->estado;
         $bug->plataforma=$request->plataforma;
         $bug->user_id=auth()->user()->id;
@@ -72,17 +72,41 @@ class BugController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bug $bug)
+    public function edit($id)
     {
-        //
+        $bug=Bug::find($id);
+        return view('bugs.edit',compact('bug'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bug $bug)
+    public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'solution' => 'required',
+            'estado' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("bugs/$id/edit")
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $dbug=Bug::find($id);
+
+        $bug = Bug::find($id);
+        $bug->description=$request->description;
+        $bug->codigo=$dbug->codigo;
+        $bug->solution=$request->solution;
+        $bug->plataforma=$dbug->plataforma;
+        $bug->estado=$request->estado;
+        $bug->user_id = auth()->user()->id;
+        $bug->subject_id=$dbug->subject_id;
+        $bug->save();
+        return redirect()->route('bugs.index');
     }
 
     /**
