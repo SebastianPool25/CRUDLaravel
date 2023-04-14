@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-3xl text-gray-800 leading-tight">
             {{ __('Bugs') }}
         </h2>
         <div class="container mx-auto mt-10">
@@ -11,7 +11,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
 
-                Crear Nota
+                Crear Bug
 
             </a>
         </div>
@@ -24,7 +24,7 @@
                     <!-- Esta recibiendo el compact asignatura y lo esta renombrando como asignaturas, entonces el
                     cilo sera a lo que se esta recibiendo, en este caso asignatura y lo esta renombrando como Asignaturas -->
                     <table class="w-full border-collapse border border-gray-400">
-                        <thead class="bg-gray-200">
+                        <thead class="bg-blue-200">
                             <tr>
                                 <th class="py-2 px-4 border border-blue-400">Código</th>
                                 <th class="py-2 px-4 border border-blue-400">Estado</th>
