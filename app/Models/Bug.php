@@ -19,32 +19,32 @@ class Bug extends Model
     {
         return $this->belongsTo(User::class);
     }
-     // ---------- ACCESORS ----------
-        // la Descripcion se mostrara en minusculas con la primera letra en mayuscula
+     
+        // la descripción se mostrará en minusculas con la primera letra en mayuscula
         public function getDescripcionAttribute($value)
         {
             return ucfirst(strtolower($value));
         }
     
-            // el Codigo se muestra en mayusculas
+            // el código se muestra en mayusculas
         public function getCodigoAttribute($value)
         {
             return strtoupper($value);
         }
     
-            // la Solucion se mostrara en minusculas con la primera letra en mayuscula
+            // la solución se mostrara en minusculas con la primera letra en mayuscula
         public function getSolucionAttribute($value)
         {
             return ucfirst(strtolower($value));
         }
     
-            // la Plataforma se mostrara en mayusculas
+            // la plataforma se mostrara en mayusculas
         public function getPlataformaAttribute($value)
         {
             return strtoupper($value);
         }
     
-            // los Estados se mostraran como strings dependiendo el numero
+            // los estados se mostrarán como su palabra
         public function getEstadoAttribute($value)
         {
             $estado = [
@@ -57,25 +57,23 @@ class Bug extends Model
     
             return $estado[$value] ?? 'Desconocido';
         }
-        //-------------------------------
     
-        // ---------- MUTATORS ----------
-            // la Descripcion se guardara en minusculas
+            // la descripción se guardará en minusculas
         public function setDescripcionAttribute($value)
         {
             $this->attributes['description'] = strtolower($value);
         }
-            // el Codigo se guardara en minusculas
+            // el código se guardará en minusculas
         public function setCodigoAttribute($value)
         {
             $this->attributes['codigo'] = strtolower($value);
         }
-            // la Solucion se guardara en minusculas
+            // solución se guardará en minusculas
         public function setSolucionAttribute($value)
         {
             $this->attributes['solution'] = strtolower($value);
         }
-            // la Plataforma se guardara en minusculas
+            // la plataforma se guardará en minusculas
         public function setPlataformaAttribute($value)
         {
             $this->attributes['plataforma'] = strtolower($value);

@@ -22,47 +22,36 @@ class Cornellnote extends Model
      {
          return $this->belongsTo(Topic::class);
      }
-     //---------- ACCESORS ----------
-        // Mostrar texto en mayuscula
+        // mayuscula
         public function getTituloAttribute($value)
         {
             return strtoupper($value);
         }
-            // Dividir las palabras clave en un array de palabras
-        public function getPalabrasClaveAttribute($value)
-        {
-            return explode(',', $value);
-        }
-            // Mostrar la conclusion en mayuscula
+            // Mostrar la conclusión en mayuscula
         public function getConclusionAttribute($value)
         {
             return strtoupper($value);
         }
     
-        //------------------------------
-    
-    
-        // ---------- MUTATORS ----------
-            // el Titulo se guardara en minusculas
+            // el titulo en minusculas
         public function setTituloAttribute($value)
         {
             $this->attributes['titulo'] = strtolower($value);
         }
-            // el Texto se guardara en minusculas
+            // el texto en minusculas
         public function setTextoAttribute($value)
         {
             $this->attributes['apuntes'] = strtolower($value);
         }
-            // la Conclusion se guardara en minusculas
+            // la conclusión en minusculas
         public function setConclusionAttribute($value)
         {
             $this->attributes['conclusion'] = strtolower($value);
         }
-            // Palabras clave las guardara como un array sin los espacios
+            // keywords se guardará como un array sin los espacios
         public function setPalabrasClaveAttribute($value)
         {
             $this->attributes['keywords'] = str_replace(' ', '', $value);
         }
-        //-------------------------------
     }
 

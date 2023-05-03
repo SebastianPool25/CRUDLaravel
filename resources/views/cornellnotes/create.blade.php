@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <!-- Esta recibiendo el compact asignatura y lo esta renombrando como asignaturas, entonces el
                     cilo sera a lo que se esta recibiendo, en este caso asignatura y lo esta renombrando como Asignaturas -->
-                    <form action="{{ route('cornellnotes.store') }}" method="post" class="w-full max-w-lg mx-auto bg-gray-200 shadow-md rounded-lg p-6">
+                    <form action="{{ route('cornellnotes.store') }}" method="post" class="w-full max-w-lg mx-auto bg-red-100 shadow-md rounded-lg p-6">
                     @csrf
                         <h2 class="text-2xl font-bold mb-6">Formulario de Notas</h2>
                         <div class="mb-4">

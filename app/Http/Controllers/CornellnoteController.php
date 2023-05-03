@@ -5,13 +5,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Cornellnote;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator; //funcion de validaciones
+use Illuminate\Support\Facades\Validator; 
 
 class CornellnoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $Notitas =  DB::table('cornellnotes')
@@ -26,16 +24,12 @@ class CornellnoteController extends Controller
         return view('cornellnotes.index', compact('Notitas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $temas = DB::table('subjects')
         ->join('topics', 'subjects.id', '=', 'topics.subject_id')
         ->select('topics.id', 'topics.tema')
         ->where('subjects.ing', auth()->user()->ing)
-        ->where('subjects.semestre', auth()->user()->semestre)
         ->get();
         
         $this->authorize('create', Cornellnote::class);
@@ -43,9 +37,7 @@ class CornellnoteController extends Controller
         return view('cornellnotes.create', compact('temas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
 
@@ -58,13 +50,11 @@ class CornellnoteController extends Controller
             'conclusion' => 'required',
             
         ]);
-        //validación
         if ($validator->fails()) {
             return redirect('cornellnotes/create')
                         ->withErrors($validator)
                         ->withInput();
         }
-        //inserción
         $nota = new Cornellnote();
         $nota->titulo = $request->titulo;
         $nota->keywords = $request->keywords;
@@ -77,9 +67,6 @@ class CornellnoteController extends Controller
         return redirect()->route('cornellnotes.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $detalle_nota=Cornellnote::find($id);    
@@ -94,9 +81,6 @@ class CornellnoteController extends Controller
         return view('cornellnotes.show', compact('detalle_nota', 'notas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $detalle_nota=Cornellnote::find($id);
@@ -108,13 +92,10 @@ class CornellnoteController extends Controller
             ->select('topics.tema','topics.unidad','cornellnotes.titulo','cornellnotes.keywords','cornellnotes.apuntes','cornellnotes.conclusion')
             ->where('cornellnotes.id', $detalle_nota->id)
             ->get();
-        //dd($notas);
         return view('cornellnotes.edit', compact('detalle_nota','notas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
@@ -122,13 +103,12 @@ class CornellnoteController extends Controller
             'conclusion' => 'required',
 
         ]);
-        //validación
+        
         if ($validator->fails()) {
             return redirect("cornellnotes/$id/edit")
                         ->withErrors($validator)
                         ->withInput();
         }
-        //inserción
         $detalle_nota=Cornellnote::find($id);
         
         $this->authorize('update', $detalle_nota);
@@ -145,9 +125,6 @@ class CornellnoteController extends Controller
         return redirect()->route('cornellnotes.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $nota=Cornellnote::find($id);
