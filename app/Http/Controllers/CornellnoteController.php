@@ -17,9 +17,12 @@ class CornellnoteController extends Controller
         $Notitas =  DB::table('cornellnotes')
             ->join('topics','cornellnotes.topic_id','=','topics.id')
             ->join('subjects','topics.subject_id','=','subjects.id')
-            ->select('subjects.nombre','cornellnotes.titulo','cornellnotes.id','cornellnotes.Conclusion')
+            ->select('subjects.nombre','cornellnotes.titulo','cornellnotes.id','cornellnotes.keywords')
             ->where('cornellnotes.user_id',auth()->user()->id)
             ->get();
+
+            $this->authorize('viewany',Cornellnote::class);
+
         return view('cornellnotes.index', compact('Notitas'));
     }
 
@@ -31,8 +34,12 @@ class CornellnoteController extends Controller
         $temas = DB::table('subjects')
         ->join('topics', 'subjects.id', '=', 'topics.subject_id')
         ->select('topics.id', 'topics.tema')
-        ->where('subjects.ing', auth()->user()->ingenieria)
+        ->where('subjects.ing', auth()->user()->ing)
+        ->where('subjects.semestre', auth()->user()->semestre)
         ->get();
+        
+        $this->authorize('create', Cornellnote::class);
+
         return view('cornellnotes.create', compact('temas'));
     }
 
@@ -41,12 +48,15 @@ class CornellnoteController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->authorize('create', Cornellnote::class);
+
         $validator = Validator::make($request->all(), [
             'titulo' => 'required',
             'keywords' => 'required',
             'apuntes' => 'required',
             'conclusion' => 'required',
-            'tema' => 'required'
+            
         ]);
         //validación
         if ($validator->fails()) {
@@ -61,7 +71,7 @@ class CornellnoteController extends Controller
         $nota->apuntes = $request->apuntes;
         $nota->conclusion = $request->conclusion;
         $nota->user_id = auth()->user()->id;
-        $nota->topic_id = $request->tema;
+        $nota->topic_id = $request->tema_id;
         $nota->save();
 
         return redirect()->route('cornellnotes.index');
@@ -73,6 +83,9 @@ class CornellnoteController extends Controller
     public function show($id)
     {
         $detalle_nota=Cornellnote::find($id);    
+
+        $this->authorize('view', $detalle_nota);
+
         $notas = DB::table('cornellnotes')
             ->join('topics','cornellnotes.topic_id','=','topics.id')
             ->join('subjects','topics.subject_id','=','subjects.id')
@@ -87,6 +100,8 @@ class CornellnoteController extends Controller
     public function edit($id)
     {
         $detalle_nota=Cornellnote::find($id);
+
+        $this->authorize('update', $detalle_nota);
         
         $notas = DB::table('cornellnotes')
             ->join('topics','cornellnotes.topic_id','=','topics.id')
@@ -103,7 +118,7 @@ class CornellnoteController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'palabrasClave' => 'required',
+            'keywords' => 'required',
             'conclusion' => 'required',
 
         ]);
@@ -115,6 +130,9 @@ class CornellnoteController extends Controller
         }
         //inserción
         $detalle_nota=Cornellnote::find($id);
+        
+        $this->authorize('update', $detalle_nota);
+
         $nota = Cornellnote::find($id);
         $nota->titulo = $detalle_nota->titulo;
         $nota->keywords = $request->keywords;
@@ -133,6 +151,7 @@ class CornellnoteController extends Controller
     public function destroy($id)
     {
         $nota=Cornellnote::find($id);
+        $this->authorize('delete', $nota);
         $nota->delete();
         return redirect()->route('cornellnotes.index');
     }

@@ -19,12 +19,7 @@
                             <label class=" text-black text-sm  font-bold mb-2" for="temas">
                                 Temas
                             </label>
-                            <select
-                                class="block appearance-none w-full bg-white border border-red-400 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white"
-                                name="tema" id="tema">
-                                <option value="">Seleccione un tema</option>                               
-                                <option value=""></option>
-                            </select>
+                            <input class="w-full bg-white border border-red-400 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" name="tema" id="tema" rows="6" disabled value="{{$detalle_nota->topic->tema}}"/>
                         </div>
                         <div class="mb-4">
                             <label class="block text-black-400 text-sm font-bold mb-2" for="titulo">

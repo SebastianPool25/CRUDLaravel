@@ -22,7 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($DatosAsignaturas as $asignatura)
+                        @foreach ($asignaturas as $asignatura)
                             <tr class="bg-white">
                                 <td class="py-2 px-4 border border-gray-400"> {{ $asignatura->nombre }} </td>
                                 <td class="py-2 px-4 border border-gray-400"> <center>{{ $asignatura->ing }}</center> </td>

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Subject;
 use App\Models\Topic;
-use App\Models\Bug;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

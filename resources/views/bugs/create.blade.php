@@ -34,7 +34,7 @@
                             </label>
                             <input
                                 class="w-full bg-white border border-blue-400 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                id="titulo" name="titulo" type="text" placeholder="Ingresa el código de error">
+                                id="codigo" name="codigo" type="text" placeholder="Ingresa el código de error">
                         </div>
                         <div class="mb-4">
                             <label class="block text-black-400 text-sm font-bold mb-2" for="plataforma">

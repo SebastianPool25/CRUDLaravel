@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('description', 500);
             $table->string('codigo', 100)->nullable();
-            $table->string('solution', 100)->nullable();
+            $table->string('solution', 250)->nullable();
             $table->integer('estado');
             $table->string('plataforma', 200);
             $table->foreignId('user_id')

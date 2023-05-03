@@ -21,9 +21,9 @@ class BugFactory extends Factory
         return [
             //
 
-                'description' => fake()->paragraph(3),
+                'description' => fake()->paragraph(2),
                 'codigo' => fake()->optional()->randomElement(['error 404', 'error de sintaxis','error 500','SQL']),
-                'solution' => fake()->paragraph(3),
+                'solution' => fake()->paragraph(2),
                 'estado' => fake()->numberBetween(1,5),
                 'plataforma' => fake()->randomElement(['vuejs','laravel','php','tailwindcss','codeigniter']),
                 'subject_id'=>$subject->random()

@@ -27,7 +27,7 @@
                         <thead class="bg-red-200">
                             <tr>
                                 <th class="py-2 px-4 border border-red-400">Titulo</th>
-                                <th class="py-2 px-4 border border-red-400">Conclusión</th>
+                                <th class="py-2 px-4 border border-red-400">Keywords</th>
                                 <th class="py-2 px-4 border border-red-400">Entrar a la nota</th>
                                 <th class="py-2 px-4 border border-red-400">Editar</th>
                             </tr>
@@ -37,7 +37,7 @@
                             @foreach($Notitas as $nota)
                             <tr>
                                 <td class="py-2 px-4 border border-red-400"> {{ $nota->titulo }} </td>
-                                <td class="py-2 px-4 border border-red-400"> {{ $nota->Conclusion }} </td>
+                                <td class="py-2 px-4 border border-red-400">  {{$nota->keywords}}</td>
                                 <td class="px-6 py-4 border border-red-400">
                                     <center>
                                         <a href="{{ route('cornellnotes.show', $nota->id) }}">

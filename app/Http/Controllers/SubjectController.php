@@ -12,9 +12,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $DatosAsignaturas = Subject::all();
-        //dd($DatosAsignaturas);
-        return view('asignaturas', compact('DatosAsignaturas'));
+        $asignaturas=Subject::where('ing',auth()->user()->ing)->get();
+        return view('asignaturas', compact('asignaturas'));
     }
 
 }

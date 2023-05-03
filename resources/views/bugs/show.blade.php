@@ -18,7 +18,6 @@
                             <h1 class="text-4xl font-bold text-center">Código: {{ $detalle_bug->codigo }}</h1>
                             <div>
                                 
-                                <p class="text-lg">Semestre:</p>
                                 <p class="text-lg">Estado: {{$detalle_bug->estado}}</p>
                 
                                 <p class="text-lg">Fecha:
